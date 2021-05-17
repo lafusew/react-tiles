@@ -1,3 +1,4 @@
+import { MapVisualizer } from 'components/MapVisualizer';
 import { TileRenderer } from 'components/TilesRenderer';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
@@ -7,6 +8,7 @@ const useStyles = createUseStyles({
     display: 'flex',
     alignItems:'center',
     justifyContent:'center',
+    flexDirection: 'column',
     width:'100vw',
     height:'100vh'
   }
@@ -49,7 +51,7 @@ const testRow5 = [
   'yellow',
   'red',
   'yellow',
-  'yellow',
+  'black',
 ];
 
 function App() {
@@ -58,6 +60,7 @@ function App() {
   return (
     <div className={classes.root}>
       <TileRenderer map={[testRow1, testRow2, testRow3, testRow4, testRow5]} position={{x: 0, y: 0}} />
+      <MapVisualizer map={[testRow1, testRow2, testRow3, testRow4, testRow5]} />
     </div>
   );
 }

@@ -10,12 +10,7 @@ const useStyles = createUseStyles({
   
   });
 
-interface Tile {
-  color: string;
-}
-
-
-type Row = string[];
+export type Row = string[];
 type Map = Row[];
 
 interface GameData {
@@ -119,18 +114,20 @@ export const TileRenderer:React.FC<GameData> = ({
       >
         {currentTileset.map((tile, i) => <div key={i} style={{background: tile}}>{i}</div>)}
       </div>
-      <button onClick={handleDown}>
-        down
-      </button>
       <button onClick={handleUp}>
         up
       </button>
-      <button onClick={handleLeft}>
-        left
+      <button onClick={handleDown}>
+        down
       </button>
-      <button onClick={handleRight}>
-        right
-      </button>
+      <div style={{display:'flex'}}>
+        <button onClick={handleLeft}>
+          left
+        </button>
+        <button onClick={handleRight}>
+          right
+        </button>
+      </div>
     </>
   )
 }
