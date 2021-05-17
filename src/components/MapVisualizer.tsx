@@ -7,7 +7,7 @@ export const MapVisualizer:React.FC<{map: Row[]}> = ({
   return (
     <>
     <p>Minimap</p>
-    <div style={{width: 300, height: 300, display: 'flex', flexDirection: 'column'}}>
+    <div style={{maxWidth: 300, maxHeight: 300, display: 'flex', flexDirection: 'column'}}>
       {map.map((row) => <div style={{display: 'flex'}}>{row.map((tile) => <div style={{background: tile, width:20, height:20}}/>)}</div> )}
     </div>
     </>
