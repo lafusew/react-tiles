@@ -1,24 +1,63 @@
+import { TileRenderer } from 'components/TilesRenderer';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createUseStyles } from 'react-jss';
+
+const useStyles = createUseStyles({
+  root: {
+    display: 'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    width:'100vw',
+    height:'100vh'
+  }
+})
+
+const testRow1 = [
+  'orange',
+  'blue',
+  'blue',
+  'orange',
+  'orange',
+];
+
+const testRow2 = [
+  'green',
+  'blue',
+  'red',
+  'blue',
+  'blue',
+];
+
+const testRow3 = [
+  'red',
+  'red',
+  'red',
+  'red',
+  'red',
+];
+
+const testRow4 = [
+  'green',
+  'red',
+  'green',
+  'green',
+  'green',
+];
+
+const testRow5 = [
+  'green',
+  'yellow',
+  'red',
+  'yellow',
+  'yellow',
+];
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+      <TileRenderer map={[testRow1, testRow2, testRow3, testRow4, testRow5]} position={{x: 0, y: 0}} />
     </div>
   );
 }
