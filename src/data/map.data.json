@@ -1,0 +1,39 @@
+{
+  "map": [
+    [
+      "orange",
+      "blue",
+      "blue",
+      "orange",
+      "orange"
+    ],
+    [
+      "green",
+      "blue",
+      "red",
+      "blue",
+      "blue"
+    ],
+    [
+      "red",
+      "red",
+      "red",
+      "red",
+      "red"
+    ],
+    [
+      "green",
+      "red",
+      "green",
+      "green",
+      "green"
+    ],
+    [
+      "green",
+      "yellow",
+      "red",
+      "yellow",
+      "black"
+    ]
+  ]
+}
