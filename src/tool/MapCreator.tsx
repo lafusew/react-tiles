@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FullMapInfo } from 'store/Map.context';
 export interface MapCreatorProps {
   onTileChange: (position: {row: number, column: number}, value: string) => void
@@ -23,7 +24,9 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
     onTileChange(selectedTile, value);
     setValueSelector(false)
   }
+
   const possibleValues= ['orange','blue', 'red', 'green', 'yellow', 'black']
+  
   return (
     <>
       {
@@ -52,6 +55,9 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
           </div>
         ))}
       </div>
+      <Link to='/'>
+        Test the map
+      </Link>
     </>
   )
 }
