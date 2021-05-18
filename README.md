@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+# React Tiles
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Tiles is a **tile based game** built for a 1 week school project.
 
-## Available Scripts
+This readme contains the full history about the project, if you just want to **download source and run the project** just scroll all the way down :)
 
-In the project directory, you can run:
+## School Instructions
 
-### `yarn start`
+The main instructions were :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> The story should be **choice-based** with some possibilites leading to loose or to a different ending.
+>
+> The images, sounds and text should all be **originals** and self-made.
+>
+> Text, Image and Sound shouldn't give the same information
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+*The experience shouldn't last more than 3 mins*
 
-### `yarn test`
+## Our concept
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I had the simple idea of storing tiles in a 2D array to be able to render tile around you base on your position in the Array.
+This allows us to build a static world were our player can evolve.
 
-### `yarn build`
+Each tiles is going to store differents parameters, so basically **the whole game** will be stored in the map as json.  
+I'm definitely not sure that the way to go but its sounded like a easy way to go using React and only Html (no canvas).  
+*As our game will be really short, it doesn't seems too crazy to store everything in a big json.*
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project State [##---]2/5days
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 1. Monday
+I came with the how-it-would-work idea first than the story, and honestly I wasn't interested too much about what should I say in this little game.
+That why I grouped up with someone in my course to be able to produce a full project including the art and story.
+Then I realised that writing a 2D array to actually build our level design wasn't the best usecase. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+So Monday day I built :
++ TileRenderer component, that only care about which tiles to render
++ Game component, that handle the position of the player in the 2D and gives TileRender the correct 9 tiles to display.
++ Controller component which is handled by game. 
++ Map imported from a JSON and stored in a React.Context to be able to modify the map.
+  + Map editor component that allows you to edit the 2D lvl array in a visual way.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## How to run the project
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To be able to run this project locally. You need NodeJS and Yarn.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Here are the link in case you don't have already NodeJS and Yarn installed.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Install [Node](https://nodejs.org/en/) & [Yarn](https://classic.yarnpkg.com/latest.msi)   
 
-## Learn More
+Then run `yarn start` in the project directory to launch the web app. 
+Click on "Edit the map" to access the map editor. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*map editor doc to be written*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+
