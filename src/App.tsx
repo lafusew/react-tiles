@@ -1,7 +1,10 @@
-import { MapVisualizer } from 'components/MapVisualizer';
-import { TileRenderer } from 'components/TilesRenderer';
-import React from 'react';
+import { Game } from 'components/Game';
+import { map } from 'data/map.data.json';
+import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { Route, Switch } from 'react-router-dom';
+import { FullMapInfo, Map } from 'store/Map.context';
+import { MapCreator } from 'tool/MapCreator';
 
 const useStyles = createUseStyles({
   root: {
@@ -14,54 +17,41 @@ const useStyles = createUseStyles({
   }
 })
 
-const testRow1 = [
-  'orange',
-  'blue',
-  'blue',
-  'orange',
-  'orange',
-];
-
-const testRow2 = [
-  'green',
-  'blue',
-  'red',
-  'blue',
-  'blue',
-];
-
-const testRow3 = [
-  'red',
-  'red',
-  'red',
-  'red',
-  'red',
-];
-
-const testRow4 = [
-  'green',
-  'red',
-  'green',
-  'green',
-  'green',
-];
-
-const testRow5 = [
-  'green',
-  'yellow',
-  'red',
-  'yellow',
-  'black',
-];
 
 function App() {
   const classes = useStyles();
 
+  const [ currentMap, setCurrentMap ] = useState<Map>(map);
+  const [dataStr, setDataStr] = useState('');
+  
+  const handleMapModification = (tilePos: {row: number, column: number}, value: string) => {
+    setCurrentMap((map) => {
+      let ancienMap = map;
+      ancienMap[tilePos.row][tilePos.column] = value;
+      setDataStr("data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ancienMap)));
+
+      return ancienMap;
+    })
+  }
+
   return (
     <div className={classes.root}>
-      <TileRenderer map={[testRow1, testRow2, testRow3, testRow4, testRow5]} position={{x: 0, y: 0}} />
-      <MapVisualizer map={[testRow1, testRow2, testRow3, testRow4, testRow5]} />
-    </div>
+      <FullMapInfo.Provider value={currentMap}>
+        <Switch>
+          <Route path='/' exact>
+            <Game spawn={[[0,1,2], [0,1,2]]}/>
+          </Route>
+          <Route path='/editor'>
+            <MapCreator
+              onTileChange={handleMapModification}
+            />
+            <a style={{position: 'absolute', bottom: 10, right: 10, background: 'red'}} type='button' href={dataStr} download={'map.json'}>
+              Export
+            </a>
+          </Route>
+        </Switch>
+      </FullMapInfo.Provider>
+    </div> 
   );
 }
 
