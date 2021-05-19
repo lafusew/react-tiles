@@ -1,4 +1,9 @@
-import React, { useContext, useLayoutEffect, useState } from 'react';
+import back from 'assets/player/back.png';
+import front from 'assets/player/front.png';
+import left from 'assets/player/left.png';
+import right from 'assets/player/right.png';
+import { themeFinder } from 'assets/theme/theme.type';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FullMapInfo, Tile } from 'store/Map.context';
 import { Controls } from './Controls';
@@ -6,6 +11,7 @@ import { TileRenderer } from './TilesRenderer';
 
 export interface GameProps {
   spawn: [[number, number, number],[number, number, number]]
+  onEvent: (type:string, content: Record<string, any>) => void
 }
 
 // This component get the map from the store, so you can test it while building it.
@@ -14,30 +20,50 @@ export interface GameProps {
 
 
 export const Game:React.FC<GameProps> = ({
-  spawn
+  spawn, onEvent
 }) => {
 
   const map = useContext(FullMapInfo);
+
+  //PLAYER SPRITE (CONTROLED BY MOVEMENT)
+  const [playerSprite, setPlayerSprite] = useState(front);
+
+  //theme state
+  const [currentTheme, setCurrentTheme] = useState(themeFinder(''));
+  const [currentThemeCounter, setCurrentThemeCounter] = useState(0);
+  
+  useEffect(() => {
+    if (currentThemeCounter < currentTheme.length && currentTheme.script) {
+      onEvent('script', {author:"elon", script: currentTheme.script[currentThemeCounter]})
+      setCurrentThemeCounter(ct => ct + 1);
+    } 
+  }, [currentTheme])
+
+
 
   //spawn[0] = Rows
   const [currentRowPos, setCurrentRowPos] = useState<number[]>(spawn[0]);
   //spawn[1] = column
   const [currentCulumnPos, setCurrentCulumnPos] = useState<number[]>(spawn[1]);
-  const [currentTileset, setCurrentTileset] = useState<Tile[]>([]);
 
-  //tilset layout order
-    // 0 1 2
-    // 3 4 5
-    // 6 7 8
+  const [currentTileset, setCurrentTileset] = useState<Tile[]>([]);
   useLayoutEffect(() => {
-    setCurrentTileset([
-      map[currentRowPos[0]][currentCulumnPos[0]], map[currentRowPos[0]][currentCulumnPos[1]], map[currentRowPos[0]][currentCulumnPos[2]],
-      map[currentRowPos[1]][currentCulumnPos[0]], map[currentRowPos[1]][currentCulumnPos[1]], map[currentRowPos[1]][currentCulumnPos[2]],
-      map[currentRowPos[2]][currentCulumnPos[0]], map[currentRowPos[2]][currentCulumnPos[1]], map[currentRowPos[2]][currentCulumnPos[2]]
-    ])
+    const tempTileset= [
+      map[currentRowPos[0]][currentCulumnPos[0]], map[currentRowPos[0]][currentCulumnPos[1]], map[currentRowPos[0]][currentCulumnPos[2]],     // 0 1 2
+      map[currentRowPos[1]][currentCulumnPos[0]], map[currentRowPos[1]][currentCulumnPos[1]], map[currentRowPos[1]][currentCulumnPos[2]],     // 3 4 5
+      map[currentRowPos[2]][currentCulumnPos[0]], map[currentRowPos[2]][currentCulumnPos[1]], map[currentRowPos[2]][currentCulumnPos[2]]      // 6 7 8
+    ]
+    setCurrentTileset(tempTileset)
+    setCurrentTheme((theme) => {
+      if (theme.name !== themeFinder(tempTileset[4].theme).name)  {
+        setCurrentThemeCounter(0);
+      }
+      return themeFinder(tempTileset[4].theme)
+    })
   },[currentRowPos, currentCulumnPos, map])
 
   function handleDown() {
+    setPlayerSprite(front);
     if (!currentTileset[7].isCollider){
       setCurrentRowPos(ancienPos => {
         let nextPost:number[] = [];
@@ -54,6 +80,7 @@ export const Game:React.FC<GameProps> = ({
   }
 
   function handleUp() {
+    setPlayerSprite(back)
     //currenTileset[1] is the tile above you
     if (!currentTileset[1].isCollider){
       //moove
@@ -70,6 +97,7 @@ export const Game:React.FC<GameProps> = ({
   }
 
   function handleRight() {
+    setPlayerSprite(right)
     if (!currentTileset[5].isCollider){
       setCurrentCulumnPos(ancienPos => {
         let nextPost:number[] = [];
@@ -86,6 +114,7 @@ export const Game:React.FC<GameProps> = ({
   }
 
   function handleLeft() {
+    setPlayerSprite(left)
     if (!currentTileset[3].isCollider){
       setCurrentCulumnPos(ancienPos => {
         let nextPost:number[] = [];
@@ -102,7 +131,10 @@ export const Game:React.FC<GameProps> = ({
 
   return (
     <div>
-      <TileRenderer renderedTiles={currentTileset} />
+      <TileRenderer
+        renderedTiles={currentTileset}
+        sprite={playerSprite}
+      />
       <Controls
         onLeftClick={handleLeft}
         onRightClick={handleRight}

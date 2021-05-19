@@ -20,7 +20,6 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
       row: row,
       column: column
     });
-    console.log(map[row][column]);
     setMousePos({x:e.clientX, y:e.clientY})
     setValueSelector(true);
   }
@@ -60,7 +59,7 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
                 onClick={(e) => handleTileClick(e, rowIndex, columnIndex)}
               >
                 <div style={{display:'flex'}}>
-                  isCollider: <div style={{height: 8, width: 8, background: tile.isCollider ? 'green' : 'red'}}/>
+                  isCollider: <div style={{height: 8, width: 8, background: tile.isCollider ? 'red' : 'green'}}/>
                 </div>
                 <div style={{display:'flex'}}>
                   type: {tile.type}
@@ -70,6 +69,9 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
                 </div>
                 <div style={{height: 30, width:30}}>
                   <TileComponent {...tile} />
+                </div>
+                <div style={{display:'flex'}}>
+                  theme: {tile.theme}
                 </div>
               </div>
             )}

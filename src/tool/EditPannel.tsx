@@ -58,8 +58,15 @@ export const EditPannel:React.FC<EditPannelProps> = ({
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
           </div>
         )
-      } else if(keyname === 'rotation') {
+      }  else if(keyname === 'rotation') {
         const possibleValues= [0, 90, 180, -90]
+        return (
+          <div>
+            {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
+          </div>
+        )
+      } else if(keyname === 'theme') {
+        const possibleValues= ['default', 'PARTY']
         return (
           <div>
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
@@ -87,7 +94,7 @@ export const EditPannel:React.FC<EditPannelProps> = ({
       <div className={classes.root}>
         {Object.entries(currentTileParameter).map((keyValuePair) => {
           return(
-          <TileParameter keyname={keyValuePair[0]} value={keyValuePair[1]}/>
+          <TileParameter key={keyValuePair[0]} keyname={keyValuePair[0]} value={keyValuePair[1]}/>
         )}
         )}
       </div>

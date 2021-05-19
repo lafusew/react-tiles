@@ -25,8 +25,9 @@ function App() {
 
   const [ currentMap, setCurrentMap ] = useState<Map>(map);
   const [dataStr, setDataStr] = useState('');
+  const [currentPhrase, setCurrentPhrase]= useState({author:'', content:''})
   
-  const handleMapModification = (tilePos: {row: number, column: number}, key: TileKeys, value: any) => {
+  function handleMapModification(tilePos: {row: number, column: number}, key: TileKeys, value: any) {
     setCurrentMap((map) => {
       let ancienMap = map;
       ancienMap[tilePos.row][tilePos.column][key] = value as never;
@@ -36,12 +37,21 @@ function App() {
     })
   }
 
+  function handleGameEvent(type: string, content: Record<string,any>){
+    if (type === 'script') {
+      setCurrentPhrase({author: content.author, content: content.script})
+    }
+  }
+
   return (
     <div className={classes.root}>
       <FullMapInfo.Provider value={currentMap}>
         <Switch>
           <Route path='/' exact>
-            <Game spawn={[[0,1,2], [0,1,2]]}/>
+            <Game onEvent={handleGameEvent} spawn={[[0,1,2], [0,1,2]]}/>
+            <p>
+              {currentPhrase.author}:{currentPhrase.content}
+            </p>
           </Route>
           <Route path='/editor'>
             <MapCreator

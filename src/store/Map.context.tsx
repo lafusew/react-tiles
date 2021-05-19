@@ -4,6 +4,7 @@ export interface Tile {
   isCollider: boolean;
   type: string;
   rotation: number;
+  theme: string;
 }
 
 export type TileKeys = 'isCollider' | 'type' | 'rotation'
