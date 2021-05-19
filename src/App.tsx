@@ -3,7 +3,7 @@ import { map } from 'data/map.data.json';
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Route, Switch } from 'react-router-dom';
-import { FullMapInfo, Map } from 'store/Map.context';
+import { FullMapInfo, Map, TileKeys } from 'store/Map.context';
 import { MapCreator } from 'tool/MapCreator';
 
 const useStyles = createUseStyles({
@@ -13,7 +13,9 @@ const useStyles = createUseStyles({
     justifyContent:'center',
     flexDirection: 'column',
     width:'100vw',
-    height:'100vh'
+    height:'100vh',
+    background: 'black',
+    color: 'white'
   }
 })
 
@@ -24,10 +26,10 @@ function App() {
   const [ currentMap, setCurrentMap ] = useState<Map>(map);
   const [dataStr, setDataStr] = useState('');
   
-  const handleMapModification = (tilePos: {row: number, column: number}, value: string) => {
+  const handleMapModification = (tilePos: {row: number, column: number}, key: TileKeys, value: any) => {
     setCurrentMap((map) => {
       let ancienMap = map;
-      ancienMap[tilePos.row][tilePos.column] = value;
+      ancienMap[tilePos.row][tilePos.column][key] = value as never;
       setDataStr("data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ancienMap)));
 
       return ancienMap;
