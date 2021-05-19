@@ -1,6 +1,6 @@
 import React, { useContext, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FullMapInfo } from 'store/Map.context';
+import { FullMapInfo, Tile } from 'store/Map.context';
 import { Controls } from './Controls';
 import { TileRenderer } from './TilesRenderer';
 
@@ -12,6 +12,7 @@ export interface GameProps {
 // currentTilset is a flat array from 2D and contains all the tile data for the 9tiles around the player
 // currentRowPos and ColumnPos are udpated based on controls inputs 
 
+
 export const Game:React.FC<GameProps> = ({
   spawn
 }) => {
@@ -22,7 +23,7 @@ export const Game:React.FC<GameProps> = ({
   const [currentRowPos, setCurrentRowPos] = useState<number[]>(spawn[0]);
   //spawn[1] = column
   const [currentCulumnPos, setCurrentCulumnPos] = useState<number[]>(spawn[1]);
-  const [currentTileset, setCurrentTileset] = useState<string[]>([]);
+  const [currentTileset, setCurrentTileset] = useState<Tile[]>([]);
 
   //tilset layout order
     // 0 1 2
@@ -37,55 +38,65 @@ export const Game:React.FC<GameProps> = ({
   },[currentRowPos, currentCulumnPos, map])
 
   function handleDown() {
-    setCurrentRowPos(ancienPos => {
-      let nextPost:number[] = [];
-      //map[i] == Row; donc ici on check si map[i + 1] existe avant de faire row + 1
-      // ancienPos[2] reprensente la derniere ligne affiché donc ancienPos[2] + 1 est la prochaine. (c'est elle qui doit exister)
-      if (map[ancienPos[2] + 1]) {
-        ancienPos.forEach((row) => nextPost.push(row + 1))
-      } else {
-        nextPost = ancienPos;
-      }
-      return nextPost;
-    })
+    if (!currentTileset[7].isCollider){
+      setCurrentRowPos(ancienPos => {
+        let nextPost:number[] = [];
+        //map[i] == Row; donc ici on check si map[i + 1] existe avant de faire row + 1
+        // ancienPos[2] reprensente la derniere ligne affiché donc ancienPos[2] + 1 est la prochaine. (c'est elle qui doit exister)
+        if (map[ancienPos[2] + 1]) {
+          ancienPos.forEach((row) => nextPost.push(row + 1))
+        } else {
+          nextPost = ancienPos;
+        }
+        return nextPost;
+      })
+    }
   }
 
   function handleUp() {
-    setCurrentRowPos(ancienPos => {
-      let nextPost:number[] = [];
-      if (map[ancienPos[0] - 1]) {
-        ancienPos.forEach((row) => nextPost.push(row - 1))
-      } else {
-        nextPost = ancienPos;
-      }
-      return nextPost;
-    })
+    //currenTileset[1] is the tile above you
+    if (!currentTileset[1].isCollider){
+      //moove
+      setCurrentRowPos(ancienPos => {
+        let nextPost:number[] = [];
+        if (map[ancienPos[0] - 1]) {
+          ancienPos.forEach((row) => nextPost.push(row - 1))
+        } else {
+          nextPost = ancienPos;
+        }
+        return nextPost;
+      })
+    }
   }
 
   function handleRight() {
-    setCurrentCulumnPos(ancienPos => {
-      let nextPost:number[] = [];
-      //map[i] == Row; donc ici on check si map[i + 1] existe avant de faire row + 1
-      // ancienPos[2] reprensente la derniere ligne affiché donc ancienPos[2] + 1 est la prochaine. (c'est elle qui doit exister)
-      if (map[ancienPos[2] + 1]) {
-        ancienPos.forEach((row) => nextPost.push(row + 1))
-      } else {
-        nextPost = ancienPos;
-      }
-      return nextPost;
-    })
+    if (!currentTileset[5].isCollider){
+      setCurrentCulumnPos(ancienPos => {
+        let nextPost:number[] = [];
+        //map[i] == Row; donc ici on check si map[i + 1] existe avant de faire row + 1
+        // ancienPos[2] reprensente la derniere ligne affiché donc ancienPos[2] + 1 est la prochaine. (c'est elle qui doit exister)
+        if (map[ancienPos[2] + 1]) {
+          ancienPos.forEach((row) => nextPost.push(row + 1))
+        } else {
+          nextPost = ancienPos;
+        }
+        return nextPost;
+      })
+    }
   }
 
   function handleLeft() {
-    setCurrentCulumnPos(ancienPos => {
-      let nextPost:number[] = [];
-      if (map[ancienPos[0] - 1]) {
-        ancienPos.forEach((row) => nextPost.push(row - 1))
-      } else {
-        nextPost = ancienPos;
-      }
-      return nextPost;
-    })
+    if (!currentTileset[3].isCollider){
+      setCurrentCulumnPos(ancienPos => {
+        let nextPost:number[] = [];
+        if (map[ancienPos[0] - 1]) {
+          ancienPos.forEach((row) => nextPost.push(row - 1))
+        } else {
+          nextPost = ancienPos;
+        }
+        return nextPost;
+      })
+    }
   }
 
 
