@@ -1,5 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
+import { Tile } from 'store/Map.context';
+import { TileComponent } from './Tile';
 
 const useStyles = createUseStyles({
   root: {
@@ -11,7 +13,7 @@ const useStyles = createUseStyles({
   });
 
 export interface TileRenderProps {
-  renderedTiles: string[];
+  renderedTiles: Tile[];
 }
 
 export const TileRenderer:React.FC<TileRenderProps> = ({
@@ -26,7 +28,7 @@ export const TileRenderer:React.FC<TileRenderProps> = ({
         height: 300,
       }}
     >
-      {renderedTiles.map((tile, i) => <div key={i} style={{background: tile}}>{i}</div>)}
+      {renderedTiles.map((tile, i) => <TileComponent {...tile} i={i} />)}
     </div>
   )
 }
