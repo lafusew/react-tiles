@@ -1,39 +1,338 @@
 {
-  "map": [
-    [
-      "orange",
-      "blue",
-      "blue",
-      "orange",
-      "orange"
-    ],
-    [
-      "green",
-      "blue",
-      "red",
-      "blue",
-      "blue"
-    ],
-    [
-      "red",
-      "red",
-      "red",
-      "red",
-      "red"
-    ],
-    [
-      "green",
-      "red",
-      "green",
-      "green",
-      "green"
-    ],
-    [
-      "green",
-      "yellow",
-      "red",
-      "yellow",
-      "black"
-    ]
+  "map": 
+  [
+    [{
+      "isCollider": false,
+      "type": "empty",
+      "rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": true,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }],
+    [{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    },{
+      "isCollider": false,
+      "type": "empty",
+"rotation": 0
+    }]
   ]
 }
