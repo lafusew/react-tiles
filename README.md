@@ -39,6 +39,8 @@ So Monday day I built :
 + Map imported from a JSON and stored in a React.Context to be able to modify the map.
   + Map editor component that allows you to edit the 2D lvl array in a visual way.
 
+Next it went terrible, too much thing to do in too less time, I had to show progress to my teacher all the way through so I was building ultra crappy and not abstracted component to test and finnally I had no time to refactor and clean everything so now its plenty of bugs and not working great, but in order to fit the subject I had to continue. So It's thurday now and I plan to do quickly finish a working prototype that can be shown tomorrow.
+
 
 ## How to run the project
 
