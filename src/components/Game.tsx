@@ -31,15 +31,17 @@ export const Game:React.FC<GameProps> = ({
   //theme state
   const [currentTheme, setCurrentTheme] = useState(themeFinder(''));
   const [currentThemeCounter, setCurrentThemeCounter] = useState(0);
-  
+  const [themeVisited, setThemeVisited] = useState<Record<string, any>>({
+    'PARTY': 0,
+    'default': 0
+  });
+
   useEffect(() => {
     if (currentThemeCounter < currentTheme.length && currentTheme.script) {
       onEvent('script', {author:"elon", script: currentTheme.script[currentThemeCounter]})
       setCurrentThemeCounter(ct => ct + 1);
     } 
   }, [currentTheme])
-
-
 
   //spawn[0] = Rows
   const [currentRowPos, setCurrentRowPos] = useState<number[]>(spawn[0]);
@@ -56,7 +58,11 @@ export const Game:React.FC<GameProps> = ({
     setCurrentTileset(tempTileset)
     setCurrentTheme((theme) => {
       if (theme.name !== themeFinder(tempTileset[4].theme).name)  {
-        setCurrentThemeCounter(0);
+        setThemeVisited((themes) => { return {
+          ...themes,
+          [theme.name]: currentThemeCounter
+        }})
+        setCurrentThemeCounter(themeVisited[theme.name]);
       }
       return themeFinder(tempTileset[4].theme)
     })
