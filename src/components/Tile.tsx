@@ -22,6 +22,8 @@ export const TileComponent:React.FC<TileComponentProps> = ({
 
 function renderImage(type: string): string{
   switch (type) {
+    case 'champain':
+      return empty;
     case 'wall':
       return wall
     case 'corner':

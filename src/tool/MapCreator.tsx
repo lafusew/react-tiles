@@ -26,6 +26,8 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
 
   function handleValueSelectorClick(key: TileKeys, value: string):void {
     onTileChange(selectedTile, key, value);
+  }
+  function onCloseClick() {
     setValueSelector(false)
   }
   
@@ -46,7 +48,9 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
             pos={mousePos}
             currentTileParameter={map[selectedTile.row][selectedTile.column]}
             onEditValidation={handleValueSelectorClick}
-          />
+          >
+            <button onClick={onCloseClick}>close</button>
+          </EditPannel>
         </div>
       }
       <div style={{display: 'flex', flexDirection: 'column', overflow: 'scroll'}}>

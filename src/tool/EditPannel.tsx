@@ -24,7 +24,7 @@ export interface EditPannelProps {
   pos: {x: number, y:number}
 }
 export const EditPannel:React.FC<EditPannelProps> = ({
-  currentTileParameter, onEditValidation, pos
+  currentTileParameter, onEditValidation, pos, children
 }) => {
   const classes = useStyles();
   function handleParametersInput(keyname: string, value: any){
@@ -66,16 +66,14 @@ export const EditPannel:React.FC<EditPannelProps> = ({
           </div>
         )
       } else if(keyname === 'theme') {
-        const possibleValues= ['default', 'PARTY']
+        const possibleValues= ['default', 'PARTY', 'PHONE']
         return (
           <div>
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
           </div>
         )
       } else {
-        return (
-          <div></div>
-        )
+        return <div></div>
       }
     }
 
@@ -97,6 +95,7 @@ export const EditPannel:React.FC<EditPannelProps> = ({
           <TileParameter key={keyValuePair[0]} keyname={keyValuePair[0]} value={keyValuePair[1]}/>
         )}
         )}
+        {children}
       </div>
     </div>
   )

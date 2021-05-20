@@ -55,19 +55,28 @@ export const Game:React.FC<GameProps> = ({
       map[currentRowPos[1]][currentCulumnPos[0]], map[currentRowPos[1]][currentCulumnPos[1]], map[currentRowPos[1]][currentCulumnPos[2]],     // 3 4 5
       map[currentRowPos[2]][currentCulumnPos[0]], map[currentRowPos[2]][currentCulumnPos[1]], map[currentRowPos[2]][currentCulumnPos[2]]      // 6 7 8
     ]
+
+    if (tempTileset[4].theme === 'PHONE') {
+      onEvent('party_invinte', {})
+    }
+    
     setCurrentTileset(tempTileset)
     setCurrentTheme((theme) => {
-      if (theme.name !== themeFinder(tempTileset[4].theme).name)  {
+      const newThemeName = themeFinder(tempTileset[4].theme).name;
+      if (theme.name !== newThemeName ){
+        onEvent('themeChange', {
+          theme: newThemeName
+        })
         setThemeVisited((themes) => { return {
           ...themes,
-          [theme.name]: currentThemeCounter
+          [theme.name]: currentThemeCounter,
         }})
         setCurrentThemeCounter(themeVisited[theme.name]);
       }
       return themeFinder(tempTileset[4].theme)
     })
   },[currentRowPos, currentCulumnPos, map])
-
+  
   function handleDown() {
     setPlayerSprite(front);
     if (!currentTileset[7].isCollider){

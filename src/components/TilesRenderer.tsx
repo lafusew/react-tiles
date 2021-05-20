@@ -5,7 +5,6 @@ import { Tile } from 'store/Map.context';
 import { TileComponent } from './Tile';
 
 
-
 const useStyles = createUseStyles({
   root: {
     position: 'relative',

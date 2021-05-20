@@ -1,3 +1,5 @@
+import partySound from 'assets/sounds/partySound1.ogg';
+import phoneSound from 'assets/sounds/phone.mp3';
 import { Game } from 'components/Game';
 import { map } from 'data/map.data.json';
 import React, { useState } from 'react';
@@ -5,6 +7,8 @@ import { createUseStyles } from 'react-jss';
 import { Route, Switch } from 'react-router-dom';
 import { FullMapInfo, Map, TileKeys } from 'store/Map.context';
 import { MapCreator } from 'tool/MapCreator';
+import useSound from 'use-sound';
+
 
 const useStyles = createUseStyles({
   root: {
@@ -25,9 +29,10 @@ function App() {
 
   const [ currentMap, setCurrentMap ] = useState<Map>(map);
   const [dataStr, setDataStr] = useState('');
-  const [currentPhrase, setCurrentPhrase]= useState({author:'', content:''})
+  const [currentPhrase, setCurrentPhrase]= useState({author:'', content:''});
   
   function handleMapModification(tilePos: {row: number, column: number}, key: TileKeys, value: any) {
+    console.log(tilePos,key, value);
     setCurrentMap((map) => {
       let ancienMap = map;
       ancienMap[tilePos.row][tilePos.column][key] = value as never;
@@ -36,13 +41,26 @@ function App() {
       return ancienMap;
     })
   }
+  const [playParty, {stop: stopParty}] = useSound(partySound, {volume: 0.5})
+  const [playPhone] = useSound(phoneSound, {volume: 0.5})
+
 
   function handleGameEvent(type: string, content: Record<string,any>){
+    console.log(type, content)
     if (type === 'script') {
       setCurrentPhrase({author: content.author, content: content.script})
     }
+    if (type === 'themeChange') {
+      if (content.theme === 'PARTY') {
+        playParty();
+      } else if (content.theme === 'PHONE') {
+        playPhone();
+      } else {
+        stopParty();
+      }
+    }
   }
-
+  
   return (
     <div className={classes.root}>
       <FullMapInfo.Provider value={currentMap}>

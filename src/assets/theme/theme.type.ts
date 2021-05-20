@@ -1,4 +1,5 @@
 import party from './party.json';
+import phone from './phone.json';
 
 export interface GameTheme {
   name: string;
@@ -6,7 +7,7 @@ export interface GameTheme {
   length: number
 }
 
-const themes = [party];
+const themes = [party, phone];
 
 export function themeFinder(name: string): GameTheme{
   let currentTheme: GameTheme;

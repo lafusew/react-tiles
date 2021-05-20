@@ -5,6 +5,7 @@ export interface Tile {
   type: string;
   rotation: number;
   theme: string;
+  event?: string;
 }
 
 export type TileKeys = 'isCollider' | 'type' | 'rotation'
