@@ -1,8 +1,10 @@
+import { TileComponent } from 'components/Tile';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FullMapInfo } from 'store/Map.context';
+import { FullMapInfo, TileKeys } from 'store/Map.context';
+import { EditPannel } from './EditPannel';
 export interface MapCreatorProps {
-  onTileChange: (position: {row: number, column: number}, value: string) => void
+  onTileChange: (position: {row: number, column: number}, key: TileKeys, value: any) => void
 }
 
 export const MapCreator:React.FC<MapCreatorProps> = ({
@@ -11,21 +13,23 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
   const map = useContext(FullMapInfo);
   const [selectedTile, setSelectedTile] = useState({row: 0, column: 0})
   const [valueSelector, setValueSelector] = useState(false)
+  const [mousePos, setMousePos] = useState({x:0, y:0})
 
-  const handleTileClick = (row:number, column:number) => {
+  const handleTileClick = (e:React.MouseEvent, row:number, column:number) => {
     setSelectedTile({
       row: row,
       column: column
     });
+    setMousePos({x:e.clientX, y:e.clientY})
     setValueSelector(true);
   }
 
-  function handleValueSelectorClick(value: string):void {
-    onTileChange(selectedTile, value);
+  function handleValueSelectorClick(key: TileKeys, value: string):void {
+    onTileChange(selectedTile, key, value);
+  }
+  function onCloseClick() {
     setValueSelector(false)
   }
-
-  const possibleValues= ['orange','blue', 'red', 'green', 'yellow', 'black']
   
   return (
     <>
@@ -40,17 +44,43 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
             color: 'white'
           }}
         >
-          {possibleValues.map((value) => <button onClick={()=>handleValueSelectorClick(value)}>{value}</button>)}
+          <EditPannel
+            pos={mousePos}
+            currentTileParameter={map[selectedTile.row][selectedTile.column]}
+            onEditValidation={handleValueSelectorClick}
+          >
+            <button onClick={onCloseClick}>close</button>
+          </EditPannel>
         </div>
       }
       <div style={{display: 'flex', flexDirection: 'column', overflow: 'scroll'}}>
         {map.map((row, rowIndex) => (
-          <div style={{display: 'flex'}}>
+          <div key={rowIndex} style={{display: 'flex'}}>
             {row.map((tile, columnIndex) =>
               <div
-                style={{background: tile, width:100, height:100}}
-                onClick={() => handleTileClick(rowIndex, columnIndex)}
-              />
+                key={columnIndex}
+                style={{width:100, height:100, fontSize: 8, display: 'flex', flexDirection:'column'}}
+                onClick={(e) => handleTileClick(e, rowIndex, columnIndex)}
+              >
+                <div style={{display:'flex'}}>
+                  isCollider: <div style={{height: 8, width: 8, background: tile.isCollider ? 'red' : 'green'}}/>
+                </div>
+                <div style={{display:'flex'}}>
+                  type: {tile.type}
+                </div>
+                <div style={{display:'flex'}}>
+                  rotation: {tile.rotation}
+                </div>
+                <div style={{height: 30, width:30}}>i²  
+                  <TileComponent {...tile} />
+                </div>
+                <div style={{display:'flex'}}>
+                  theme: {tile.theme}
+                </div>
+                <div style={{display:'flex'}}>
+                  event: {tile.event}
+                </div>
+              </div>
             )}
           </div>
         ))}
