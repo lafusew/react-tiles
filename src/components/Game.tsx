@@ -40,7 +40,7 @@ export const Game:React.FC<GameProps> = ({
       onEvent('script', {author:"elon", script: currentTheme.script[currentThemeCounter]})
       setCurrentThemeCounter(ct => ct + 1);
     } 
-  }, [currentTheme])
+  }, [currentTheme, currentThemeCounter, onEvent])
 
   //spawn[0] = Rows
   const [currentRowPos, setCurrentRowPos] = useState<number[]>(spawn[0]);
@@ -74,7 +74,7 @@ export const Game:React.FC<GameProps> = ({
       }
       return themeFinder(tempTileset[4].theme)
     })
-  },[currentRowPos, currentCulumnPos, map])
+  },[currentRowPos, currentCulumnPos, map, themeVisited, currentThemeCounter, onEvent])
   
   function handleDown() {
     setPlayerSprite(front);
