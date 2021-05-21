@@ -4,7 +4,6 @@ import left from 'assets/player/left.png';
 import right from 'assets/player/right.png';
 import { themeFinder } from 'assets/theme/theme.type';
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FullMapInfo, Tile } from 'store/Map.context';
 import { Controls } from './Controls';
 import { TileRenderer } from './TilesRenderer';
@@ -156,9 +155,6 @@ export const Game:React.FC<GameProps> = ({
         onUpClick={handleUp}
         onDownClick={handleDown}
       />
-      <Link to='/editor'>
-        Edit the map
-      </Link>
     </div>
   )
 }

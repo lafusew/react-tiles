@@ -66,14 +66,14 @@ export const EditPannel:React.FC<EditPannelProps> = ({
           </div>
         )
       } else if(keyname === 'theme') {
-        const possibleValues= ['default', 'PARTY', 'PHONE']
+        const possibleValues= ['default', 'PARTY', 'PHONE', 'OFFICE']
         return (
           <div>
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
           </div>
         )
       } else if(keyname === 'event') {
-        const possibleValues= ['none', 'party_invite',]
+        const possibleValues= ['none', 'party_invite']
         return (
           <div>
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}

@@ -1,13 +1,15 @@
+import officeSound from 'assets/sounds/officeSound.ogg';
 import partySound from 'assets/sounds/partySound1.ogg';
 import phoneSound from 'assets/sounds/phone.mp3';
 import { Game } from 'components/Game';
 import { map } from 'data/map.data.json';
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { FullMapInfo, Map, TileKeys } from 'store/Map.context';
 import { MapCreator } from 'tool/MapCreator';
 import useSound from 'use-sound';
+
 
 
 const useStyles = createUseStyles({
@@ -19,7 +21,22 @@ const useStyles = createUseStyles({
     width:'100vw',
     height:'100vh',
     background: 'black',
-    color: 'white'
+    color: 'white',
+  },
+  textContainer: {
+    boxSizing: 'border-box',
+    padding: 16,
+    width: 332,
+    height: 100,
+    border: '6px solid #FFFFFF',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
+    '& > p ': {
+      margin:0,
+      padding:0,
+    }
   }
 })
 
@@ -41,9 +58,9 @@ function App() {
       return ancienMap;
     })
   }
-  const [playParty, {stop: stopParty}] = useSound(partySound, {volume: 0.5})
-  const [playPhone] = useSound(phoneSound, {volume: 0.5})
-  const [choiceComponent, setChoiceComponent] = useState(false);
+  const [playParty, {stop: stopParty}] = useSound(partySound, {volume: 0.3})
+  const [playOffice, {stop: stopOffice}] = useSound(officeSound, {volume: 0.3})
+  const [playPhone, {stop: stopPhone}] = useSound(phoneSound, {volume: 0.5})
 
   function handleGameEvent(type: string, content: Record<string,any>){
     console.log(type, content)
@@ -56,13 +73,13 @@ function App() {
         playParty();
       } else if (content.theme === 'PHONE') {
         playPhone();
-      } else {
+      } else if (content.theme === 'OFFICE') {
+        playOffice();
+      }else {
+        stopOffice();
+        stopPhone();
         stopParty();
       }
-    }
-
-    if (type === 'party_invite') {
-      
     }
     setCurrentPhrase(currentPhrase)
   }
@@ -72,22 +89,21 @@ function App() {
       <FullMapInfo.Provider value={currentMap}>
         <Switch>
           <Route path='/' exact>
-            <div style={{width: 300, height: 100, border: 'border: 6px solid #FFFFFF' }}>
+            <div
+              className={classes.textContainer}
+              style={{visibility: currentPhrase.author === '' ? 'hidden' : 'visible'}}
+            >
               {
                 currentPhrase.author !== '' && 
                 <p>
                   {currentPhrase.author} : {currentPhrase.content}
                 </p>
               }
-              {
-                choiceComponent && 
-                <div style={{display:'flex'}}>
-                  <button onClick={() => console.log('yest')}>YES</button>
-                  <button>NO</button>
-                </div>
-              }
             </div>
             <Game onEvent={handleGameEvent} spawn={[[0,1,2], [0,1,2]]}/>
+            <Link to='/editor' style={{position: 'absolute', color:'white', opacity: 0.2, bottom: 10, textDecoration: 'none' }}>
+              Map editor
+            </Link>
           </Route>
           <Route path='/editor'>
             <MapCreator

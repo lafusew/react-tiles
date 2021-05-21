@@ -11,6 +11,8 @@ const useStyles = createUseStyles({
     display: 'grid',
     gridTemplateColumns:'1fr 1fr 1fr',
     gridTemplateRows:'1fr 1fr 1fr',
+    padding: 16,
+    border: 'solid 6px #FFF'
   },
   playerContainer: {
     position:'absolute',
