@@ -40,7 +40,8 @@ export const Game:React.FC<GameProps> = ({
       onEvent('script', {author:"elon", script: currentTheme.script[currentThemeCounter]})
       setCurrentThemeCounter(ct => ct + 1);
     } 
-  }, [currentTheme, currentThemeCounter, onEvent])
+    // eslint-disable-next-line
+  }, [currentTheme])
 
   //spawn[0] = Rows
   const [currentRowPos, setCurrentRowPos] = useState<number[]>(spawn[0]);
