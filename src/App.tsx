@@ -43,12 +43,13 @@ function App() {
   }
   const [playParty, {stop: stopParty}] = useSound(partySound, {volume: 0.5})
   const [playPhone] = useSound(phoneSound, {volume: 0.5})
-
+  const [choiceComponent, setChoiceComponent] = useState(false);
 
   function handleGameEvent(type: string, content: Record<string,any>){
     console.log(type, content)
+    let currentPhrase = {author: '', content:''}
     if (type === 'script') {
-      setCurrentPhrase({author: content.author, content: content.script})
+      currentPhrase = {author: content.author, content: content.script}
     }
     if (type === 'themeChange') {
       if (content.theme === 'PARTY') {
@@ -59,6 +60,11 @@ function App() {
         stopParty();
       }
     }
+
+    if (type === 'party_invite') {
+      
+    }
+    setCurrentPhrase(currentPhrase)
   }
   
   return (
@@ -66,10 +72,22 @@ function App() {
       <FullMapInfo.Provider value={currentMap}>
         <Switch>
           <Route path='/' exact>
+            <div style={{width: 300, height: 100, border: 'border: 6px solid #FFFFFF' }}>
+              {
+                currentPhrase.author !== '' && 
+                <p>
+                  {currentPhrase.author} : {currentPhrase.content}
+                </p>
+              }
+              {
+                choiceComponent && 
+                <div style={{display:'flex'}}>
+                  <button onClick={() => console.log('yest')}>YES</button>
+                  <button>NO</button>
+                </div>
+              }
+            </div>
             <Game onEvent={handleGameEvent} spawn={[[0,1,2], [0,1,2]]}/>
-            <p>
-              {currentPhrase.author}:{currentPhrase.content}
-            </p>
           </Route>
           <Route path='/editor'>
             <MapCreator

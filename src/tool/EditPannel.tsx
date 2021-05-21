@@ -72,6 +72,13 @@ export const EditPannel:React.FC<EditPannelProps> = ({
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
           </div>
         )
+      } else if(keyname === 'event') {
+        const possibleValues= ['none', 'party_invite',]
+        return (
+          <div>
+            {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
+          </div>
+        )
       } else {
         return <div></div>
       }

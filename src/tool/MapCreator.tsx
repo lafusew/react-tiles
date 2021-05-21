@@ -71,11 +71,14 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
                 <div style={{display:'flex'}}>
                   rotation: {tile.rotation}
                 </div>
-                <div style={{height: 30, width:30}}>
+                <div style={{height: 30, width:30}}>i²  
                   <TileComponent {...tile} />
                 </div>
                 <div style={{display:'flex'}}>
                   theme: {tile.theme}
+                </div>
+                <div style={{display:'flex'}}>
+                  event: {tile.event}
                 </div>
               </div>
             )}
