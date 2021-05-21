@@ -74,7 +74,7 @@ export const Game:React.FC<GameProps> = ({
       }
       return themeFinder(tempTileset[4].theme)
     })
-  },[currentRowPos, currentCulumnPos, map, themeVisited, currentThemeCounter, onEvent])
+  },[currentRowPos, currentCulumnPos, map])
   
   function handleDown() {
     setPlayerSprite(front);
