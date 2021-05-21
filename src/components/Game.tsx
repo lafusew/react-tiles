@@ -30,10 +30,6 @@ export const Game:React.FC<GameProps> = ({
   //theme state
   const [currentTheme, setCurrentTheme] = useState(themeFinder(''));
   const [currentThemeCounter, setCurrentThemeCounter] = useState(0);
-  const [themeVisited, setThemeVisited] = useState<Record<string, any>>({
-    'PARTY': 0,
-    'default': 0
-  });
 
   useEffect(() => {
     if (currentThemeCounter < currentTheme.length && currentTheme.script) {
@@ -67,11 +63,7 @@ export const Game:React.FC<GameProps> = ({
         onEvent('themeChange', {
           theme: newThemeName
         })
-        setThemeVisited((themes) => { return {
-          ...themes,
-          [theme.name]: currentThemeCounter,
-        }})
-        setCurrentThemeCounter(themeVisited[theme.name]);
+        setCurrentThemeCounter(0);
       }
       return themeFinder(tempTileset[4].theme)
     })
