@@ -74,6 +74,7 @@ export const Game:React.FC<GameProps> = ({
       }
       return themeFinder(tempTileset[4].theme)
     })
+    // eslint-disable-next-line
   },[currentRowPos, currentCulumnPos, map])
   
   function handleDown() {
