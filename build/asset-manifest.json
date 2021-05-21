@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/static/js/main.26a6908c.chunk.js",
+    "main.js.map": "/static/js/main.26a6908c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1c6b30a6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1c6b30a6.js.map",
+    "static/js/2.394588b6.chunk.js": "/static/js/2.394588b6.chunk.js",
+    "static/js/2.394588b6.chunk.js.map": "/static/js/2.394588b6.chunk.js.map",
+    "static/js/3.e3eb7352.chunk.js": "/static/js/3.e3eb7352.chunk.js",
+    "static/js/3.e3eb7352.chunk.js.map": "/static/js/3.e3eb7352.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.394588b6.chunk.js.LICENSE.txt": "/static/js/2.394588b6.chunk.js.LICENSE.txt",
+    "static/js/3.e3eb7352.chunk.js.LICENSE.txt": "/static/js/3.e3eb7352.chunk.js.LICENSE.txt",
+    "static/media/officeSound.87c95516.ogg": "/static/media/officeSound.87c95516.ogg",
+    "static/media/partySound1.ab8e85e1.ogg": "/static/media/partySound1.ab8e85e1.ogg",
+    "static/media/phone.78d9a8bf.mp3": "/static/media/phone.78d9a8bf.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1c6b30a6.js",
+    "static/js/2.394588b6.chunk.js",
+    "static/js/main.26a6908c.chunk.js"
+  ]
+}
