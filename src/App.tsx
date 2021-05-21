@@ -1,6 +1,7 @@
 import officeSound from 'assets/sounds/officeSound.ogg';
 import partySound from 'assets/sounds/partySound1.ogg';
 import phoneSound from 'assets/sounds/phone.mp3';
+import step from 'assets/sounds/step.ogg';
 import { Game } from 'components/Game';
 import { map } from 'data/map.data.json';
 import React, { useState } from 'react';
@@ -9,8 +10,6 @@ import { Link, Route, Switch } from 'react-router-dom';
 import { FullMapInfo, Map, TileKeys } from 'store/Map.context';
 import { MapCreator } from 'tool/MapCreator';
 import useSound from 'use-sound';
-
-
 
 const useStyles = createUseStyles({
   root: {
@@ -58,9 +57,11 @@ function App() {
       return ancienMap;
     })
   }
-  const [playParty, {stop: stopParty}] = useSound(partySound, {volume: 0.3})
-  const [playOffice, {stop: stopOffice}] = useSound(officeSound, {volume: 0.3})
-  const [playPhone, {stop: stopPhone}] = useSound(phoneSound, {volume: 0.5})
+  const [playParty, {stop: stopParty}] = useSound(partySound, {volume: 0.1})
+  const [playOffice, {stop: stopOffice}] = useSound(officeSound, {volume: 0.1})
+  const [playPhone, {stop: stopPhone}] = useSound(phoneSound, {volume: 0.3})
+  const [playCorridor, {stop: stopCorridor}] = useSound(step, {volume: 0.05})
+
 
   function handleGameEvent(type: string, content: Record<string,any>){
     console.log(type, content)
@@ -75,8 +76,13 @@ function App() {
         playPhone();
       } else if (content.theme === 'OFFICE') {
         playOffice();
-      }else {
+      } else if (content.theme === 'CORRIDOR') {
+        stopParty();
         stopOffice();
+        playCorridor();
+      }else  {
+        stopOffice();
+        stopCorridor();
         stopPhone();
         stopParty();
       }

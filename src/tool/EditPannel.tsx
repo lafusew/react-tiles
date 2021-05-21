@@ -52,7 +52,7 @@ export const EditPannel:React.FC<EditPannelProps> = ({
           </>
         )
       } else if(keyname === 'type') {
-        const possibleValues= ['empty','wall', 'corner']
+        const possibleValues= ['empty','wall', 'corner','WIP']
         return (
           <div>
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}
@@ -66,7 +66,7 @@ export const EditPannel:React.FC<EditPannelProps> = ({
           </div>
         )
       } else if(keyname === 'theme') {
-        const possibleValues= ['default', 'PARTY', 'PHONE', 'OFFICE']
+        const possibleValues= ['default', 'PARTY', 'PHONE', 'OFFICE', 'CORRIDOR']
         return (
           <div>
             {possibleValues.map((value) => <button onClick={() => handleParametersInput(keyname, value) }>{value}</button>)}

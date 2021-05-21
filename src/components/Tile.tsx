@@ -1,5 +1,6 @@
 import corner from 'assets/tiles/corner.png'
 import empty from 'assets/tiles/empty.png'
+import sign from 'assets/tiles/sign.png'
 import wall from 'assets/tiles/wall.png'
 import React from 'react'
 import { Tile } from 'store/Map.context'
@@ -22,8 +23,8 @@ export const TileComponent:React.FC<TileComponentProps> = ({
 
 function renderImage(type: string): string{
   switch (type) {
-    case 'champain':
-      return empty;
+    case 'WIP':
+      return sign;
     case 'wall':
       return wall
     case 'corner':

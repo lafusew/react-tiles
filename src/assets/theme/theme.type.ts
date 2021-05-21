@@ -1,3 +1,4 @@
+import corridor from './corridor.json';
 import office from './office.json';
 import party from './party.json';
 import phone from './phone.json';
@@ -8,7 +9,7 @@ export interface GameTheme {
   length: number
 }
 
-const themes = [party, phone, office];
+const themes = [party, phone, office, corridor];
 
 export function themeFinder(name: string): GameTheme{
   let currentTheme: GameTheme;

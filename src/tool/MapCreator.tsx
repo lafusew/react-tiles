@@ -53,13 +53,13 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
           </EditPannel>
         </div>
       }
-      <div style={{display: 'flex', flexDirection: 'column', overflow: 'scroll'}}>
+      <div style={{display: 'flex', flexDirection: 'column', overflow: 'scroll', fontFamily: 'Roboto'}}>
         {map.map((row, rowIndex) => (
           <div key={rowIndex} style={{display: 'flex'}}>
             {row.map((tile, columnIndex) =>
               <div
                 key={columnIndex}
-                style={{width:100, height:100, fontSize: 8, display: 'flex', flexDirection:'column'}}
+                style={{width:100, height:100, fontSize: 9, display: 'flex', flexDirection:'column'}}
                 onClick={(e) => handleTileClick(e, rowIndex, columnIndex)}
               >
                 <div style={{display:'flex'}}>
@@ -71,7 +71,7 @@ export const MapCreator:React.FC<MapCreatorProps> = ({
                 <div style={{display:'flex'}}>
                   rotation: {tile.rotation}
                 </div>
-                <div style={{height: 30, width:30}}>i²  
+                <div style={{height: 30, width:30}}>  
                   <TileComponent {...tile} />
                 </div>
                 <div style={{display:'flex'}}>
