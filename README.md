@@ -39,8 +39,12 @@ So Monday day I built :
 + Map imported from a JSON and stored in a React.Context to be able to modify the map.
   + Map editor component that allows you to edit the 2D lvl array in a visual way.
 
-Next it went terrible, too much thing to do in too less time, I had to show progress to my teacher all the way through so I was building ultra crappy and not abstracted component to test and finnally I had no time to refactor and clean everything so now its plenty of bugs and not working great, but in order to fit the subject I had to continue. So It's thurday now and I plan to do quickly finish a working prototype that can be shown tomorrow.
+Next it went terrible, too much thing to do in a short amount of time, I had to show progress to my teacher all the way through so I was building ultra crappy and not abstracted component to test and finnally I had no time to refactor and clean everything so now its plenty of bugs and not working great, but in order to fit the subject I had to continue. So It's thurday now and I plan to do quickly finish a working prototype that can be shown tomorrow.
 
+#### 5. Friday
+
+The prototype wasn't pretty clean but at least it was really cool to be able to show a "game" using only HTML (no canvas). Only sound and Sentences was working.
+Sorry guys, this cool have been much cooler...
 
 ## How to run the project
 
@@ -55,5 +59,4 @@ Click on "Edit the map" to access the map editor.
 
 *map editor doc to be written*
 
-
-
+This doc will never be written.. As I explained earlier, because I was running out of time I had to speed up features developpment. And as any unexperienced dev rushing things up I did a terrible job at maitaining my code clean and reusable. Sadly I've no time to continue working on this project so it will stays like that. Next year I might try to rebuild a full game engine in react (if a school project allow me to do something like that and get a good grade from it)
